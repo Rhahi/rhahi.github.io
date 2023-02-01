@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.ico">
+
+  <title>
+    SSH - Step by step
+  </title>
+
+  <meta name="description" content="Reset known host for hostname ssh-keygen -R $hostname Create generic SSH key ssh-keygen -a 1000 -t ed25519 -f $outfile -C &#34;host-user-&gt;target&#34; " /><meta name="generator" content="Hugo 0.110.0">
+
+  <link rel="stylesheet" href="https://rhahi.github.io/css/main.css" />
+
+  
+  
+
+  <meta property="og:title" content="SSH" />
+<meta property="og:description" content="Reset known host for hostname ssh-keygen -R $hostname Create generic SSH key ssh-keygen -a 1000 -t ed25519 -f $outfile -C &#34;host-user-&gt;target&#34; " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rhahi.github.io/linux/ssh/" /><meta property="article:section" content="linux" />
+<meta property="article:published_time" content="2023-01-31T23:10:43+01:00" />
+<meta property="article:modified_time" content="2023-01-31T23:10:43+01:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SSH"/>
+<meta name="twitter:description" content="Reset known host for hostname ssh-keygen -R $hostname Create generic SSH key ssh-keygen -a 1000 -t ed25519 -f $outfile -C &#34;host-user-&gt;target&#34; "/>
+
+
+  <meta itemprop="name" content="SSH">
+<meta itemprop="description" content="Reset known host for hostname ssh-keygen -R $hostname Create generic SSH key ssh-keygen -a 1000 -t ed25519 -f $outfile -C &#34;host-user-&gt;target&#34; "><meta itemprop="datePublished" content="2023-01-31T23:10:43+01:00" />
+<meta itemprop="dateModified" content="2023-01-31T23:10:43+01:00" />
+<meta itemprop="wordCount" content="21">
+<meta itemprop="keywords" content="" />
+
+  <meta itemprop="name" content="SSH">
+<meta itemprop="description" content="Reset known host for hostname ssh-keygen -R $hostname Create generic SSH key ssh-keygen -a 1000 -t ed25519 -f $outfile -C &#34;host-user-&gt;target&#34; "><meta itemprop="datePublished" content="2023-01-31T23:10:43+01:00" />
+<meta itemprop="dateModified" content="2023-01-31T23:10:43+01:00" />
+<meta itemprop="wordCount" content="21">
+<meta itemprop="keywords" content="" />
+</head><body class="flex relative h-full min-h-screen"><aside
+  class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:basis-60 h-full min-h-screen p-3 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar flex-shrink-0">
+  <p class="font-bold mb-5 flex items-center gap-2">
+    <button aria-label="Close sidebar"
+      class="md:hidden menu-trigger-close p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-700"><svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+</svg></button>
+    <a href="https://rhahi.github.io/" class="px-2">
+      <span>Step by step</span>
+    </a>
+    <button aria-label="Toggle dark mode"
+      class="dark-mode-toggle p-2 rounded border dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700"><svg class="h-4 w-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <circle cx="12" cy="12" r="4" />
+  <path d="M3 12h1M12 3v1M20 12h1M12 20v1M5.6 5.6l.7 .7M18.4 5.6l-.7 .7M17.7 17.7l.7 .7M6.3 17.7l-.7 .7" />
+</svg></button>
+  </p>
+
+  
+  <ul class="list-none flex flex-col gap-1">
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none "
+        href="#" >
+        <span>Devlog</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/rust22" >
+        <span>Rust22</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none "
+        href="#" >
+        <span>Cheatsheet</span>
+        
+      </a>
+    </li>
+    
+    <li>
+      <a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/linux" >
+        <span>Linux</span>
+        
+      </a>
+    </li>
+    
+  </ul>
+
+  <div class="flex-1"></div>
+
+  
+
+  <ul class="list-none flex flex-wrap justify-center gap-1 pt-2 border-t border-slate-200 dark:border-slate-600">
+    
+  </ul>
+</aside>
+
+<div
+  class="fixed bg-slate-700 bg-opacity-5 transition duration-200 ease-in-out inset-0 z-10 pointer-events-auto md:hidden left-0 top-0 w-full h-full hidden menu-overlay">
+</div>
+
+<button aria-label="Toggle Sidebar"
+  class="md:hidden absolute top-3 left-3 z-10 menu-trigger p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-100"><svg class="h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+  fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <line x1="4" y1="6" x2="20" y2="6" />
+  <line x1="4" y1="12" x2="20" y2="12" />
+  <line x1="4" y1="18" x2="16" y2="18" />
+</svg></button>
+
+
+
+
+
+
+<div class="flex flex-1 h-screen relative w-full min-w-0">
+
+  <section
+    class="will-change-transform transform transition-transform -translate-x-[200%] absolute top-0 left-0 lg:relative
+  lg:translate-x-0 lg:basis-[400px] h-full bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 lg:flex flex-col py-3 overflow-y-auto scroll-area flex-shrink-0">
+    
+    
+    <a href="https://rhahi.github.io/linux/">
+      <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">Cheatsheet</h2>
+    </a>
+<label class="mb-2 block px-2">
+  <span></span>
+  <input type="text" placeholder="Search articles" class="searchInput bg-white rounded px-2 py-1 w-full border" />
+</label>
+<script>
+  const searchElt = document.querySelector('.searchInput')
+  if (searchElt) {
+    searchElt.addEventListener('input', evt => {
+      const value = evt.target.value || '';
+
+      const articles = document.querySelectorAll('.article')
+      if (!value) {
+        articles.forEach(article => article.classList.remove('hidden'))
+      } else {
+        articles.forEach(article => article.classList.add('hidden'))
+        Array.from(articles).filter(article => {
+          const title = article.querySelector('h3')
+          if (!title) return false;
+
+          return title.textContent.toLowerCase().includes(value.toLowerCase())
+        }).forEach(article => article.classList.remove('hidden'))
+      }
+    })
+  }
+</script>
+<div class="space-y-2.5">
+      
+      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/linux/fish/">
+        
+        
+        <h3 class="text-lg font-semibold mb-0.5">Fish</h3>
+        <div
+          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+          Configuration help for fish
+config.fish set path doc
+fish_add_path /path/to/bin Change path shortening threshold doc
+set -g fish_prompt_pwd_dir_length 10 Make use of !! source -&gt; (see also)
+function bind_bang switch (commandline -t)[-1] case &#34;!&#34; commandline -t -- $history[1] commandline -f repaint case &#34;*&#34; commandline -i ! end end function bind_dollar switch (commandline -t)[-1] case &#34;!&#34; commandline -f backward-delete-char history-token-search-backward case &#34;*&#34; commandline -i &#39;$&#39; end end function fish_user_key_bindings bind ! bind_bang bind &#39;$&#39; bind_dollar end 
+        </div>
+      </a>
+      
+      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/linux/git/">
+        
+        
+        <h3 class="text-lg font-semibold mb-0.5">Git</h3>
+        <div
+          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+          Git log See single commit info git log -n 1 --decorate Compact tree view git log --graph --decorate Stash Default stash is stash@{0} General info git stash show stash@{N} Diff the stash will introduce git stash show -p stash@{N} Diff with branch git diff stash stash@{N} branch 
+        </div>
+      </a>
+      
+      <a class="article block px-3 py-4  bg-slate-900 dark:bg-slate-700 text-slate-50 "
+        href="/linux/ssh/">
+        
+        
+        <h3 class="text-lg font-semibold mb-0.5">SSH</h3>
+        <div
+          class="text-sm  text-slate-400  line-clamp-2">
+          Reset known host for hostname ssh-keygen -R $hostname Create generic SSH key ssh-keygen -a 1000 -t ed25519 -f $outfile -C &#34;host-user-&gt;target&#34; 
+        </div>
+      </a>
+      
+      <a class="article block px-3 py-4  hover:bg-slate-200 dark:hover:bg-slate-700 "
+        href="/linux/wireguard/">
+        
+        
+        <h3 class="text-lg font-semibold mb-0.5">Wireguard</h3>
+        <div
+          class="text-sm  text-slate-500 dark:text-slate-400  line-clamp-2">
+          https://wiki.archlinux.org/title/WireGuard
+Host [Interface] Address = 10.0.0.1/32 ListenPort = 51821 PrivateKey = # wg genkey &gt; host.key [Peer] PublicKey = # client&#39;s pubkey PresharedKey = # wg genpsk &gt; host-client.psk AllowedIPs = 10.0.0.2/32 Client [Interface] PrivateKey = # wg genkey &gt; client.key Address = 10.0.0.2/24 # not sure if this should match host&#39;s peer setting #DNS = 1.1.1.1, 1.0.0.1 [Peer] PublicKey = # host&#39;s pubkey PresharedKey = # wg genpsk &gt; host-client.
+        </div>
+      </a>
+      </div>
+    </section>
+
+  <div class="overflow-y-auto h-screen w-full">
+    <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
+
+      
+      <h1 class="!mb-2">SSH</h1>
+
+	  
+      <p class="text-sm text-slate-500 !mb-8"> Planted January 31, 2023
+		
+	  </p>
+      
+
+      
+
+      <h2 id="reset-known-host-for-hostname">Reset known host for hostname</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fish" data-lang="fish"><span style="display:flex;"><span><span style="color:#50fa7b">ssh-keygen</span> <span style="color:#50fa7b">-R</span> <span style="color:#8be9fd;font-style:italic">$hostname</span>
+</span></span></code></pre></div><h2 id="create-generic-ssh-key">Create generic SSH key</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fish" data-lang="fish"><span style="display:flex;"><span><span style="color:#50fa7b">ssh-keygen</span> <span style="color:#50fa7b">-a</span> <span style="color:#bd93f9">1000</span> <span style="color:#50fa7b">-t</span> ed25519 <span style="color:#50fa7b">-f</span> <span style="color:#8be9fd;font-style:italic">$outfile</span> <span style="color:#50fa7b">-C</span> <span style="color:#f1fa8c">&#34;host-user-&gt;target&#34;</span>
+</span></span></code></pre></div>
+    </article>
+  </div>
+
+</div>
+
+
+  
+<script type="text/javascript" src="/main.js" defer></script>
+
+
+</body>
+
+</html>

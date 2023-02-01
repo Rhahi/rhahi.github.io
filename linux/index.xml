@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cheatsheet on Step by step</title>
+    <link>https://rhahi.github.io/linux/</link>
+    <description>Recent content in Cheatsheet on Step by step</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Feb 2023 00:32:11 +0100</lastBuildDate><atom:link href="https://rhahi.github.io/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fish</title>
+      <link>https://rhahi.github.io/linux/fish/</link>
+      <pubDate>Wed, 01 Feb 2023 00:32:11 +0100</pubDate>
+      
+      <guid>https://rhahi.github.io/linux/fish/</guid>
+      <description>Configuration help for fish
+config.fish set path doc
+fish_add_path /path/to/bin Change path shortening threshold doc
+set -g fish_prompt_pwd_dir_length 10 Make use of !! source -&amp;gt; (see also)
+function bind_bang switch (commandline -t)[-1] case &amp;#34;!&amp;#34; commandline -t -- $history[1] commandline -f repaint case &amp;#34;*&amp;#34; commandline -i ! end end function bind_dollar switch (commandline -t)[-1] case &amp;#34;!&amp;#34; commandline -f backward-delete-char history-token-search-backward case &amp;#34;*&amp;#34; commandline -i &amp;#39;$&amp;#39; end end function fish_user_key_bindings bind ! bind_bang bind &amp;#39;$&amp;#39; bind_dollar end </description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://rhahi.github.io/linux/git/</link>
+      <pubDate>Wed, 01 Feb 2023 00:25:52 +0100</pubDate>
+      
+      <guid>https://rhahi.github.io/linux/git/</guid>
+      <description>Git log See single commit info git log -n 1 --decorate Compact tree view git log --graph --decorate Stash Default stash is stash@{0} General info git stash show stash@{N} Diff the stash will introduce git stash show -p stash@{N} Diff with branch git diff stash stash@{N} branch </description>
+    </item>
+    
+    <item>
+      <title>SSH</title>
+      <link>https://rhahi.github.io/linux/ssh/</link>
+      <pubDate>Tue, 31 Jan 2023 23:10:43 +0100</pubDate>
+      
+      <guid>https://rhahi.github.io/linux/ssh/</guid>
+      <description>Reset known host for hostname ssh-keygen -R $hostname Create generic SSH key ssh-keygen -a 1000 -t ed25519 -f $outfile -C &amp;#34;host-user-&amp;gt;target&amp;#34; </description>
+    </item>
+    
+    <item>
+      <title>Wireguard</title>
+      <link>https://rhahi.github.io/linux/wireguard/</link>
+      <pubDate>Tue, 31 Jan 2023 23:10:43 +0100</pubDate>
+      
+      <guid>https://rhahi.github.io/linux/wireguard/</guid>
+      <description>https://wiki.archlinux.org/title/WireGuard
+Host [Interface] Address = 10.0.0.1/32 ListenPort = 51821 PrivateKey = # wg genkey &amp;gt; host.key [Peer] PublicKey = # client&amp;#39;s pubkey PresharedKey = # wg genpsk &amp;gt; host-client.psk AllowedIPs = 10.0.0.2/32 Client [Interface] PrivateKey = # wg genkey &amp;gt; client.key Address = 10.0.0.2/24 # not sure if this should match host&amp;#39;s peer setting #DNS = 1.1.1.1, 1.0.0.1 [Peer] PublicKey = # host&amp;#39;s pubkey PresharedKey = # wg genpsk &amp;gt; host-client.</description>
+    </item>
+    
+  </channel>
+</rss>
